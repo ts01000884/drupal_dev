@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: UKA
  * Date: 2018/6/8
- * Time: 上午9:32
+ * Time: 下午12:10
  */
-
 /*
  * Date:2018/06/08 by uka
  * @$ta_project_id          目標專案編號
@@ -31,6 +30,3 @@ if ($user->uid == $project->uid or $user->uid == 507) {
 } else {
     $output_projcet = $ta_project_id;
 }
-
-
-?>

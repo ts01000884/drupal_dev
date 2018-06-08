@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2dddb4c9-88b1-49dd-9fc1-863c0718cd70" name="預設" comment="" />
+    <list default="true" id="2dddb4c9-88b1-49dd-9fc1-863c0718cd70" name="預設" comment="">
+      <change afterPath="$PROJECT_DIR$/view_module_dev/my_follow.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_module_dev/my_subscribe.php" beforeDir="false" afterPath="$PROJECT_DIR$/view_module_dev/my_subscribe.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,14 +14,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="my_subscribe.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="my_subscribe.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view_module_dev/my_subscribe.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+            <state relative-caret-position="120">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="32" selection-end-column="1" />
               <folding>
                 <element signature="e#6#84#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="my_follow.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/view_module_dev/my_follow.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -32,6 +44,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/view_module_dev/my_subscribe.php" />
+        <option value="$PROJECT_DIR$/view_module_dev/my_follow.php" />
       </list>
     </option>
   </component>
@@ -49,6 +62,9 @@
     <option name="y" value="203" />
     <option name="width" value="1367" />
     <option name="height" value="877" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="新增" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -102,12 +118,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528430667126</updated>
-      <workItem from="1528430669023" duration="113000" />
+      <workItem from="1528430669023" duration="394000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113000" />
+    <option name="totallyTimeSpent" value="394000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1451" y="203" width="1367" height="877" extended-state="0" />
@@ -143,11 +159,18 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/view_module_dev/my_subscribe.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="32" selection-end-column="1" />
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view_module_dev/my_follow.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
         </state>
       </provider>
     </entry>

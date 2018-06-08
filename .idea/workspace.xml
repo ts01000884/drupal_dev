@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2dddb4c9-88b1-49dd-9fc1-863c0718cd70" name="預設" comment="">
-      <change afterPath="$PROJECT_DIR$/view_module_dev/my_follow.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view_module_dev/Universal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_module_dev/my_follow.php" beforeDir="false" afterPath="$PROJECT_DIR$/view_module_dev/my_follow.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view_module_dev/my_subscribe.php" beforeDir="false" afterPath="$PROJECT_DIR$/view_module_dev/my_subscribe.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +18,8 @@
       <file leaf-file-name="my_subscribe.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view_module_dev/my_subscribe.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="32" selection-end-column="1" />
-              <folding>
-                <element signature="e#6#84#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="210">
+              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -29,8 +27,17 @@
       <file leaf-file-name="my_follow.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/view_module_dev/my_follow.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
+            <state relative-caret-position="90">
+              <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Universal.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/view_module_dev/Universal.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -43,6 +50,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/view_module_dev/Universal.php" />
         <option value="$PROJECT_DIR$/view_module_dev/my_subscribe.php" />
         <option value="$PROJECT_DIR$/view_module_dev/my_follow.php" />
       </list>
@@ -56,6 +64,9 @@
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
+  </component>
+  <component name="PhpServers">
+    <servers />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="1451" />
@@ -118,12 +129,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528430667126</updated>
-      <workItem from="1528430669023" duration="394000" />
+      <workItem from="1528430669023" duration="1273000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="394000" />
+    <option name="totallyTimeSpent" value="1273000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1451" y="203" width="1367" height="877" extended-state="0" />
@@ -157,20 +168,24 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/view_module_dev/Universal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/view_module_dev/my_subscribe.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="32" selection-end-column="1" />
-          <folding>
-            <element signature="e#6#84#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="210">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/view_module_dev/my_follow.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
+        <state relative-caret-position="90">
+          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
         </state>
       </provider>
     </entry>

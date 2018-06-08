@@ -1,20 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: UKA
- * Date: 2018/6/8
- * Time: 下午12:10
- */
 /*
  * Date:2018/06/08 by uka
  * @$ta_project_id          目標專案編號
  * @$direction_project_id   備選專案編號
  * 若admin設定尚未設定 主選與備選 將會與目前預設的值進行代換。
  * */
-
-global $user;
-variable_get('MEMBER_PASS_TARGET_PROJECT_ID');
-
 $output_projcet = '';
 global $user;
 $ta_project_id = 9;                   //主要控制哪個專案的作者 會看到指定的專案

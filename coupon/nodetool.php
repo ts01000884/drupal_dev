@@ -22,19 +22,19 @@
  * */
 
 
-
-
-
-function uka_enable() {
+function uka_enable()
+{
+    $index = 13;
+    $fieldname = 'kkk'.$index;
 
     $content_type = array(
 
-        'type'          => 'cc',
-        'name'          => '折價卷',
-        'description'   => '',
-        'title_label'   => '折價卷名稱',
-        'base'          => 'node_content',
-        'custom'        => TRUE,
+        'type' => $fieldname,
+        'name' => '折價卷',
+        'description' => '',
+        'title_label' => '折價卷名稱',
+        'base' => 'node_content',
+        'custom' => TRUE,
         'node-preview' => 0,
 
 
@@ -58,46 +58,173 @@ function uka_enable() {
     variable_set("menu_options_{$content_type['type']}", '');
 
 
-    $fields = array(
+    $field_1=unserialize('a:7:{s:12:"translatable";s:1:"0";s:12:"entity_types";a:0:{}s:8:"settings";a:2:{s:14:"allowed_values";a:2:{i:1;s:6:"平台";i:2;s:6:"大師";}s:23:"allowed_values_function";s:0:"";}s:7:"storage";a:5:{s:4:"type";s:17:"field_sql_storage";s:8:"settings";a:0:{}s:6:"module";s:17:"field_sql_storage";s:6:"active";s:1:"1";s:7:"details";a:1:{s:3:"sql";a:2:{s:18:"FIELD_LOAD_CURRENT";a:1:{s:23:"field_data_field_source";a:1:{s:5:"value";s:18:"field_source_value";}}s:19:"FIELD_LOAD_REVISION";a:1:{s:27:"field_revision_field_source";a:1:{s:5:"value";s:18:"field_source_value";}}}}}s:12:"foreign keys";a:0:{}s:7:"indexes";a:1:{s:5:"value";a:1:{i:0;s:5:"value";}}s:2:"id";s:3:"109";}');
+    $field_1=array_merge($field_1,array('field_name' => 'field_source' . $index,'type' => 'list_text',));
+
+    $field_2=unserialize('a:7:{s:12:"translatable";s:1:"0";s:12:"entity_types";a:0:{}s:8:"settings";a:2:{s:14:"allowed_values";a:3:{i:1;s:5:"1對1";i:2;s:7:"1對多";i:3;s:6:"滿額";}s:23:"allowed_values_function";s:0:"";}s:7:"storage";a:5:{s:4:"type";s:17:"field_sql_storage";s:8:"settings";a:0:{}s:6:"module";s:17:"field_sql_storage";s:6:"active";s:1:"1";s:7:"details";a:1:{s:3:"sql";a:2:{s:18:"FIELD_LOAD_CURRENT";a:1:{s:28:"field_data_field_coupon_type";a:1:{s:5:"value";s:23:"field_coupon_type_value";}}s:19:"FIELD_LOAD_REVISION";a:1:{s:32:"field_revision_field_coupon_type";a:1:{s:5:"value";s:23:"field_coupon_type_value";}}}}}s:12:"foreign keys";a:0:{}s:7:"indexes";a:1:{s:5:"value";a:1:{i:0;s:5:"value";}}s:2:"id";s:3:"159";}');
+    $field_2=array_merge($field_2,array('field_name' => 'field_coupon_type' . $index,'type' => 'list_text',));
+
+    $field_3=unserialize('a:7:{s:12:"entity_types";a:0:{}s:7:"indexes";a:0:{}s:8:"settings";a:0:{}s:12:"translatable";s:1:"0";s:7:"storage";a:5:{s:4:"type";s:17:"field_sql_storage";s:8:"settings";a:0:{}s:6:"module";s:17:"field_sql_storage";s:6:"active";s:1:"1";s:7:"details";a:1:{s:3:"sql";a:2:{s:18:"FIELD_LOAD_CURRENT";a:1:{s:35:"field_data_field_partner_percentage";a:1:{s:5:"value";s:30:"field_partner_percentage_value";}}s:19:"FIELD_LOAD_REVISION";a:1:{s:39:"field_revision_field_partner_percentage";a:1:{s:5:"value";s:30:"field_partner_percentage_value";}}}}}s:12:"foreign keys";a:0:{}s:2:"id";s:2:"81";}');
+    $field_3=array_merge($field_3,array('field_name' => 'field_partner_percentage' . $index,'type' => 'number_integer',));
+
+    $fields =array(
+        'field_source'=> $field_1,
+        'field_coupon_type' => $field_2,
+        'field_partner_percentage' => $field_3,
+    );
+
+
+
+
+
+//    $fields = array(
+//
+//        // field_source
+//
+//        /* 欄位類型 文字清單 list_text
+//         * 文字清單
+//         * */
+//        'field_source' => array(
+//
+//            'field_name' => 'field_source' . $index,
+//            'type' => 'list_text',
+//            'cardinality' => 1,
+//            'translatable' => '0',
+//            'settings' => array(
+//                'allowed_values' => array(
+//                    1 => '平台',
+//                    2 => '大師',
+//                )
+//            ),
+//
+//        ),
+//        'field_coupon_type' => array(
+//
+//            'field_name' => 'field_coupon_type' . $index,
+//            'type' => 'list_text',
+//            'cardinality' => 1,
+//            'translatable' => '0',
+//            'settings' => array(
+//                'allowed_values' => array(
+//                    1 => '一對一',
+//                    2 => '一對多',
+//                    3 => '滿額',
+//                )
+//            ),
+//
+//        ),
+//        'field_partner_percentage' => array(
+//
+//            'field_name' => 'field_partner_percentage' . $index,
+//            'type' => 'number_integer',
+//            'cardinality' => 1,
+//            'translatable' => '0',
+//            'storage' => array(
+//                'details' => array(
+//                    'sql' => array(
+//                        'FIELD_LOAD_CURRENT' => array(
+//                            'field_data_field_partner_percentage' . $index => array(
+//                                'value' => 'field_partner_percentage' . $index . '_value',
+//                            ),
+//                        ),
+//                        'FIELD_LOAD_REVISION' => array(
+//                            'field_revision_field_partner_percentage' . $index => array(
+//                                'value' => 'field_partner_percentage' . $index . '_value',
+//                            ),
+//                        ),
+//                    ),
+//                ),
+//            ),
+//        ),
+//
+//
+//    );
+
+    foreach ($fields as $field) {
+        if(!field_info_field($field['field_name']))
+        field_create_field($field);
+
+    }
+
+    $instances_1=unserialize('a:7:{s:5:"label";s:15:"折價券來源";s:6:"widget";a:5:{s:6:"weight";s:1:"1";s:4:"type";s:14:"options_select";s:6:"module";s:7:"options";s:6:"active";i:1;s:8:"settings";a:1:{s:12:"apply_chosen";s:0:"";}}s:8:"settings";a:1:{s:18:"user_register_form";b:0;}s:7:"display";a:1:{s:7:"default";a:5:{s:5:"label";s:5:"above";s:4:"type";s:12:"list_default";s:8:"settings";a:1:{s:21:"field_formatter_class";s:0:"";}s:6:"module";s:4:"list";s:6:"weight";i:4;}}s:8:"required";i:1;s:11:"description";s:0:"";s:13:"default_value";N;}');
+    $instances_1['field_name']='field_source' . $index;
+
+    $instances_2=unserialize('a:7:{s:5:"label";s:15:"折價券型態";s:6:"widget";a:5:{s:6:"weight";s:1:"2";s:4:"type";s:14:"options_select";s:6:"module";s:7:"options";s:6:"active";i:1;s:8:"settings";a:1:{s:12:"apply_chosen";s:0:"";}}s:8:"settings";a:1:{s:18:"user_register_form";b:0;}s:7:"display";a:1:{s:7:"default";a:5:{s:5:"label";s:5:"above";s:4:"type";s:12:"list_default";s:8:"settings";a:1:{s:21:"field_formatter_class";s:0:"";}s:6:"module";s:4:"list";s:6:"weight";i:8;}}s:8:"required";i:1;s:11:"description";s:0:"";s:13:"default_value";N;}');
+    $instances_2['field_name']='field_coupon_type' . $index;
+
+    $instances_3=unserialize('a:7:{s:5:"label";s:16:"承擔比率(CP)";s:6:"widget";a:5:{s:6:"weight";s:1:"7";s:4:"type";s:6:"number";s:6:"module";s:6:"number";s:6:"active";i:0;s:8:"settings";a:0:{}}s:8:"settings";a:5:{s:3:"min";s:0:"";s:3:"max";s:0:"";s:6:"prefix";s:0:"";s:6:"suffix";s:1:"%";s:18:"user_register_form";b:0;}s:7:"display";a:1:{s:7:"default";a:5:{s:5:"label";s:5:"above";s:4:"type";s:14:"number_integer";s:8:"settings";a:5:{s:18:"thousand_separator";s:0:"";s:17:"decimal_separator";s:1:".";s:5:"scale";i:0;s:13:"prefix_suffix";b:1;s:21:"field_formatter_class";s:0:"";}s:6:"module";s:6:"number";s:6:"weight";i:6;}}s:8:"required";i:0;s:11:"description";s:0:"";s:13:"default_value";N;}');
+    $instances_3['field_name']='field_partner_percentage' . $index;
+
+
+
+    $instances = array(
 
         // field_source
-
-        /* 欄位類型 文字清單 list_text
-         * 文字清單
-         * */
-        'field_source'	=> array(
-
-            'field_name'	=> 'field_source',
-            'type'          => 'list_text',
-            'cardinality'	=> 1,
-            'settings' => array(
-                'allowed_values' => array(
-                    1=>'平台',
-                    2=>'大師',
-                )
+        'field_source' => array(
+            'field_name' => 'field_source' . $index,
+            'label' => '折價卷來源',
+            'required' => TRUE,
+            'widget' => array(
+                'type' => 'options_select',
+                /* options_buttons 選擇按鈕
+                 * options_select 選擇清單
+                 * */
             ),
-
         ),
+        // field_source
+        'field_coupon_type' => array(
+            'field_name' => 'field_coupon_type' . $index,
+            'label' => '折價卷種類',
+            'required' => TRUE,
+            'widget' => array(
+                'type' => 'options_select',
+                /* options_buttons 選擇按鈕
+                 * options_select 選擇清單
+                 * */
+            ),
+        ),
+//        'field_partner_percentage' => array(
+//            'field_name' => 'field_partner_percentage' . $index,
+//            'label' => '承擔比例(CP)',
+//            'required' => TRUE,
+////            'max_length' =>20,
+////            'text_processing' =>'',
+//            'settings' => array(
+//                'min' => '',
+//                'max' => '',
+//                'prefix' => '',
+//                'suffix' => '%',
+//            ),
+//            'widget' => array(
+//                'type' => 'text_textfield',
+//                'module' => 'text',
+//                'settings' => array(
+//                    'size' =>'20',
+//                ),
+//                /* text_textfield 文字欄位
+//                 * text_textarea 文字區塊
+//                 * */
+//            ),
+//        ),
 
 
 
     );
 
-    foreach( $fields as $field ) {
+    $instances=array(
+        'field_source'=>$instances_1,
+        'field_coupon_type'=>$instances_2,
+        'field_partner_percentage'=>$instances_3,
+    );
 
-        field_create_field($field);
+    foreach ($instances as $instance) { // Loop through our instances
+
+        $instance['entity_type'] = 'node';
+        $instance['bundle'] = $fieldname; // Attach the instance to our content type
+
+        field_create_instance($instance);
 
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }

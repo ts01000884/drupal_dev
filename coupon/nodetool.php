@@ -24,7 +24,7 @@
 
 function uka_enable()
 {
-    $index = 15;
+    $index = 20;
     $fieldname = 'kkk'.$index;
 
     $content_type = array(
@@ -67,10 +67,16 @@ function uka_enable()
     $field_3=unserialize('a:7:{s:12:"entity_types";a:0:{}s:7:"indexes";a:0:{}s:8:"settings";a:0:{}s:12:"translatable";s:1:"0";s:7:"storage";a:5:{s:4:"type";s:17:"field_sql_storage";s:8:"settings";a:0:{}s:6:"module";s:17:"field_sql_storage";s:6:"active";s:1:"1";s:7:"details";a:1:{s:3:"sql";a:2:{s:18:"FIELD_LOAD_CURRENT";a:1:{s:35:"field_data_field_partner_percentage";a:1:{s:5:"value";s:30:"field_partner_percentage_value";}}s:19:"FIELD_LOAD_REVISION";a:1:{s:39:"field_revision_field_partner_percentage";a:1:{s:5:"value";s:30:"field_partner_percentage_value";}}}}}s:12:"foreign keys";a:0:{}s:2:"id";s:2:"81";}');
     $field_3=array_merge($field_3,array('field_name' => 'field_partner_percentage' . $index,'type' => 'number_integer',));
 
+    #field_ref_project
+    $field_4=unserialize('a:7:{s:12:"entity_types";a:0:{}s:7:"indexes";a:1:{s:9:"target_id";a:1:{i:0;s:9:"target_id";}}s:8:"settings";a:3:{s:11:"target_type";s:4:"node";s:7:"handler";s:4:"base";s:16:"handler_settings";a:3:{s:14:"target_bundles";a:1:{s:7:"project";s:7:"project";}s:4:"sort";a:1:{s:4:"type";s:4:"none";}s:9:"behaviors";a:1:{s:17:"views-select-list";a:1:{s:6:"status";i:0;}}}}s:12:"translatable";s:1:"0";s:7:"storage";a:5:{s:4:"type";s:17:"field_sql_storage";s:8:"settings";a:0:{}s:6:"module";s:17:"field_sql_storage";s:6:"active";s:1:"1";s:7:"details";a:1:{s:3:"sql";a:2:{s:18:"FIELD_LOAD_CURRENT";a:1:{s:28:"field_data_field_ref_project";a:1:{s:9:"target_id";s:27:"field_ref_project_target_id";}}s:19:"FIELD_LOAD_REVISION";a:1:{s:32:"field_revision_field_ref_project";a:1:{s:9:"target_id";s:27:"field_ref_project_target_id";}}}}}s:12:"foreign keys";a:1:{s:4:"node";a:2:{s:5:"table";s:4:"node";s:7:"columns";a:1:{s:9:"target_id";s:3:"nid";}}}s:2:"id";s:2:"48";}');
+    $field_4=array_merge($field_4,array('field_name' => 'field_ref_project' . $index,'type' => 'entityreference',));
+
+
     $fields =array(
         'field_source'=> $field_1,
         'field_coupon_type' => $field_2,
         'field_partner_percentage' => $field_3,
+        'field_ref_project' => $field_4,
     );
 
 
@@ -155,7 +161,9 @@ function uka_enable()
     $instances_3=unserialize('a:7:{s:5:"label";s:16:"承擔比率(CP)";s:6:"widget";a:5:{s:6:"weight";s:1:"7";s:4:"type";s:6:"number";s:6:"module";s:6:"number";s:6:"active";i:0;s:8:"settings";a:0:{}}s:8:"settings";a:5:{s:3:"min";s:0:"";s:3:"max";s:0:"";s:6:"prefix";s:0:"";s:6:"suffix";s:1:"%";s:18:"user_register_form";b:0;}s:7:"display";a:1:{s:7:"default";a:5:{s:5:"label";s:5:"above";s:4:"type";s:14:"number_integer";s:8:"settings";a:5:{s:18:"thousand_separator";s:0:"";s:17:"decimal_separator";s:1:".";s:5:"scale";i:0;s:13:"prefix_suffix";b:1;s:21:"field_formatter_class";s:0:"";}s:6:"module";s:6:"number";s:6:"weight";i:6;}}s:8:"required";i:0;s:11:"description";s:0:"";s:13:"default_value";N;}');
     $instances_3['field_name']='field_partner_percentage' . $index;
 
-
+    #field_ref_project
+    $instances_4=unserialize('a:7:{s:5:"label";s:15:"折價券方案";s:6:"widget";a:5:{s:6:"weight";s:1:"6";s:4:"type";s:23:"field_collection_hidden";s:6:"module";s:16:"field_collection";s:6:"active";i:0;s:8:"settings";a:0:{}}s:8:"settings";a:1:{s:18:"user_register_form";b:0;}s:7:"display";a:1:{s:7:"default";a:5:{s:5:"label";s:5:"above";s:4:"type";s:21:"field_collection_view";s:8:"settings";a:6:{s:4:"edit";s:6:"編輯";s:6:"delete";s:6:"刪除";s:3:"add";s:6:"新增";s:11:"description";b:1;s:9:"view_mode";s:4:"full";s:21:"field_formatter_class";s:0:"";}s:6:"module";s:16:"field_collection";s:6:"weight";i:2;}}s:8:"required";i:0;s:11:"description";s:0:"";s:13:"default_value";N;}');
+    $instances_4['field_name']='field_ref_project' . $index;
 
 //    $instances = array(
 //
@@ -215,6 +223,7 @@ function uka_enable()
         'field_source'=>$instances_1,
         'field_coupon_type'=>$instances_2,
         'field_partner_percentage'=>$instances_3,
+        'field_ref_project'=>$instances_4,
     );
 
     foreach ($instances as $instance) { // Loop through our instances
@@ -230,6 +239,17 @@ function uka_enable()
     /**
      * 建立field collection
      * field_coupons
+     * 大略流程為
+     * /////////建立field///////////
+     * 建立collection中有用的field (要檢查有無存在)
+     * 然後最後也要建立field collection的field
+     *
+     * /////////建立collection instances///////////
+     * 將剛剛的field都黏上剛剛建立的field collection 的 field
+     *
+     * /////////最後將collection黏上node type///////////
+     *
+     *
      */
     #field_amount
     $field_collection_1=unserialize('a:7:{s:12:"entity_types";a:0:{}s:7:"indexes";a:0:{}s:8:"settings";a:0:{}s:12:"translatable";s:1:"0";s:7:"storage";a:5:{s:4:"type";s:17:"field_sql_storage";s:8:"settings";a:0:{}s:6:"module";s:17:"field_sql_storage";s:6:"active";s:1:"1";s:7:"details";a:1:{s:3:"sql";a:2:{s:18:"FIELD_LOAD_CURRENT";a:1:{s:23:"field_data_field_amount";a:1:{s:5:"value";s:18:"field_amount_value";}}s:19:"FIELD_LOAD_REVISION";a:1:{s:27:"field_revision_field_amount";a:1:{s:5:"value";s:18:"field_amount_value";}}}}}s:12:"foreign keys";a:0:{}s:2:"id";s:2:"17";}');
@@ -262,6 +282,9 @@ function uka_enable()
     #field_coupons
     $field_collection_8=unserialize('a:7:{s:12:"translatable";s:1:"0";s:12:"entity_types";a:0:{}s:8:"settings";a:3:{s:16:"hide_blank_items";i:1;s:17:"hide_initial_item";i:0;s:4:"path";s:0:"";}s:7:"storage";a:5:{s:4:"type";s:17:"field_sql_storage";s:8:"settings";a:0:{}s:6:"module";s:17:"field_sql_storage";s:6:"active";s:1:"1";s:7:"details";a:1:{s:3:"sql";a:2:{s:18:"FIELD_LOAD_CURRENT";a:1:{s:24:"field_data_field_coupons";a:2:{s:5:"value";s:19:"field_coupons_value";s:11:"revision_id";s:25:"field_coupons_revision_id";}}s:19:"FIELD_LOAD_REVISION";a:1:{s:28:"field_revision_field_coupons";a:2:{s:5:"value";s:19:"field_coupons_value";s:11:"revision_id";s:25:"field_coupons_revision_id";}}}}}s:12:"foreign keys";a:0:{}s:7:"indexes";a:2:{s:5:"value";a:1:{i:0;s:5:"value";}s:11:"revision_id";a:1:{i:0;s:11:"revision_id";}}s:2:"id";s:3:"157";}');
     $field_collection_8=array_merge($field_collection_8,array('field_name' => 'field_coupons' . $index,'type' => 'field_collection',));
+
+
+
 
 
     $field_collection =array(
@@ -299,6 +322,8 @@ function uka_enable()
     $instances_field_collection_6['field_name']='field_promotion_yes_back' . $index;
 
 
+
+
     $instances_field_collection=array(
         'field_amount'=>$instances_field_collection_1,
         'field_partner_amount'=>$instances_field_collection_2,
@@ -306,6 +331,7 @@ function uka_enable()
         'field_title'=>$instances_field_collection_4,
         'field_promotion_yes'=>$instances_field_collection_5,
         'field_promotion_yes_back'=>$instances_field_collection_6,
+
     );
 
     foreach ($instances_field_collection as $instance) { // Loop through our instances
@@ -328,6 +354,14 @@ function uka_enable()
     $instances_field_collection_7['entity_type'] = 'node';
     $instances_field_collection_7['bundle'] = $fieldname; // Attach the instance to our content type
     field_create_instance($instances_field_collection_7);
+
+
+
+
+
+
+
+
 
 
 

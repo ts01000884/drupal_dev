@@ -28,34 +28,31 @@ function uka_enable()
     $fieldname = 'kkk'.$index;
 
     $content_type = array(
-
         'type' => $fieldname,
         'name' => '折價卷',
         'description' => '',
         'title_label' => '折價卷名稱',
         'base' => 'node_content',
         'custom' => TRUE,
-        'node-preview' => 0,
-
-
     );
 
     $node_type = node_type_set_defaults($content_type); // Return a node type object with default values
 
     node_type_save($node_type); // Save the node type object
 
-//  送出前預覽
+    //  送出前預覽
     variable_set("node_preview_{$content_type['type']}", 0);
-//預設選項  array('status', 'promote', 'sticky', 'revision')
+    //預設選項  array('status', 'promote', 'sticky', 'revision')
     variable_set("node_options_{$content_type['type']}", array('status'));
-//是否支援多國語言 0關閉
+    //是否支援多國語言 0關閉
     variable_set("language_content_type_{$content_type['type']}", 0);
-//顯示作者資料及日期  0 隱藏
+    //顯示作者資料及日期  0 隱藏
     variable_set("node_submitted_{$content_type['type']}", 0);
     //預覽回應
     variable_set("comment_preview_{$content_type['type']}", 0);
     //可用選單 留空即可
     variable_set("menu_options_{$content_type['type']}", '');
+
 
 
     $field_1=unserialize('a:7:{s:12:"translatable";s:1:"0";s:12:"entity_types";a:0:{}s:8:"settings";a:2:{s:14:"allowed_values";a:2:{i:1;s:6:"平台";i:2;s:6:"大師";}s:23:"allowed_values_function";s:0:"";}s:7:"storage";a:5:{s:4:"type";s:17:"field_sql_storage";s:8:"settings";a:0:{}s:6:"module";s:17:"field_sql_storage";s:6:"active";s:1:"1";s:7:"details";a:1:{s:3:"sql";a:2:{s:18:"FIELD_LOAD_CURRENT";a:1:{s:23:"field_data_field_source";a:1:{s:5:"value";s:18:"field_source_value";}}s:19:"FIELD_LOAD_REVISION";a:1:{s:27:"field_revision_field_source";a:1:{s:5:"value";s:18:"field_source_value";}}}}}s:12:"foreign keys";a:0:{}s:7:"indexes";a:1:{s:5:"value";a:1:{i:0;s:5:"value";}}s:2:"id";s:3:"109";}');

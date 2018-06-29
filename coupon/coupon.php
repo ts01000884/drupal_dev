@@ -141,9 +141,12 @@ function uka_enable()
             'field_apply_date' => $field_apply_date,
         );
         foreach ($fields as $field) {
-            if (!field_info_field($field['field_name']))
+            if (!field_info_field($field['field_name'])){
+                if(isset($field['id'])){
+                    unset($field['id']);
+                }
                 field_create_field($field);
-
+            }
         }
 
 ##field_packages內的field生成
@@ -236,9 +239,12 @@ function uka_enable()
             'field_status' => $field_status,
         );
         foreach ($fields as $field) {
-            if (!field_info_field($field['field_name']))
+            if (!field_info_field($field['field_name'])){
+                if(isset($field['id'])){
+                    unset($field['id']);
+                }
                 field_create_field($field);
-
+            }
         }
 ##field_packages內的instance生成
 
@@ -377,8 +383,12 @@ function uka_enable()
             'field_bank_account' => $field_bank_account,
         );
         foreach ($fields as $field) {
-            if (!field_info_field($field['field_name']))
+            if (!field_info_field($field['field_name'])){
+                if(isset($field['id'])){
+                    unset($field['id']);
+                }
                 field_create_field($field);
+            }
 
         }
 ##新增field_coupons 的 instance生成

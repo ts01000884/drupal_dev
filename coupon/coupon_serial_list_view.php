@@ -7,7 +7,6 @@
  */
 
 
-
 /**
  * 判斷一對一重複的序號
  * 一對多滿而不用判斷
@@ -17,8 +16,11 @@
 #判斷折價卷種類
 $node_data = node_load($row->field_coupon_type);
 #使用靜態資料暫存 以排除重複序號
-if(!isset($static->title)){
-    $static->title=array();
+if (!isset($static)) {              //避免錯誤訊息
+    $static= new stdClass();
+}
+if (!isset($static->title)) {
+    $static->title = array();
 }
 #一對一折價卷不能重複 所以將一對一兌換卷的序號存入
 if ($node_data->field_coupon_type['und'][0]['value'] == '1') {
@@ -35,20 +37,40 @@ if ($node_data->field_coupon_type['und'][0]['value'] == '1') {
 }
 #檢查點
 //dpm($static->title);
-if($row->php_1!=null) {#有找出兌換的帳號
+if ($row->php_1 != null) {#有找出兌換的帳號
     if ($node_data->field_coupon_type['und'][0]['value'] == '1' && $row->status == '0') {
         $node_data1 = node_load($row->field_user);
         if (isset($node_data1->field_user['und'][0]['target_id'])) {
             $user = user_load($node_data1->field_user['und'][0]['target_id']);
             ###保留一對一序號 本身序號欄位 shoplog資料 及計算出來的帳號一樣的序號
-            if($user->name==$row->php_1){
+            if ($user->name == $row->php_1) {
                 $node_data1 = node_load($row->field_user_1);
                 if (isset($node_data1->field_user['und'][0]['target_id'])) {
                     $user = user_load($node_data1->field_user['und'][0]['target_id']);
-                    if($user->name==$row->php_1){
+                    if ($user->name == $row->php_1) {
+                        #作為帳號搜尋使用
+                        var_dump($row->status);
+                        dpm($row->status);
+                        if (isset($_GET['combine'])) { #作為帳號搜尋使用
+                            if ($_GET['combine'] == $row->php_1) {
+                                return false;
+                            }else if(($_GET['combine'] =='')){
+                                return false;
+                            }else if($_GET['status']==0){
+                                return false;
+                            }
+                            else if(($_GET['combine'] != $row->php_1)){
+                                return true;
+                            }
+                        }
                         return false;
-                    }else{return true;}
-                }}else{return true;}
+                    } else {
+                        return true;
+                    }
+                }
+            } else {
+                return true;
+            }
         }
         ###
         #判斷若為一對多及滿額 以及計算出的帳號與訂閱帳號一致就保留 !!!可能可以刪除 筆記!!!
@@ -56,11 +78,37 @@ if($row->php_1!=null) {#有找出兌換的帳號
         $node_data1 = node_load($row->field_user_1);
         if (isset($node_data1->field_user['und'][0]['target_id'])) {
             $user = user_load($node_data1->field_user['und'][0]['target_id']);
-            if($user->name==$row->php_1){return false;}else{return true;}
+            if ($user->name == $row->php_1) {
+                #作為帳號搜尋使用
+                if (isset($_GET['combine'])) {
+                    if ($_GET['combine'] == $row->php_1) {
+                        return false;
+                    }else if(($_GET['combine'] =='')){
+                        return false;
+                    }else if(($_GET['combine'] != $row->php_1)){
+                        return true;
+                    }
+                }
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 
+}else if (isset($_GET['combine'])) { #作為帳號搜尋使用
+    if ($_GET['combine'] == $row->php_1) {
+        return false;
+    }else if($_GET['combine'] ==''){
+        return false;
+    }else if(($_GET['combine'] != $row->php_1)){
+        return true;
+    }
+    return true;
 }
+
+
+
 /**
  *
  * 判斷訂閱序號
@@ -82,4 +130,15 @@ if ($node_data->field_coupon_type['und'][0]['value'] == '1' && $row->status == '
         $user = user_load($node_data1->field_user['und'][0]['target_id']);
         return $user->name;
     }
+}
+
+
+
+
+#使用靜態資料暫存 以排除重複序號
+if (!isset($static)) {              //避免錯誤訊息
+    $static= new stdClass();
+}
+if (!isset($static->title)) {
+    $static->title = array();
 }

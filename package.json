@@ -1,0 +1,21 @@
+{
+  "name": "drupal_dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://122.116.107.182:8787/ts01000884/drupal_dev.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "19": "0.0.0"
+  },
+  "devDependencies": {
+    "testcafe": "^0.21.1"
+  }
+}

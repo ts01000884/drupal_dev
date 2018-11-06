@@ -1,0 +1,141 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function messenger_menu() {
+    $items['msgtest1/%'] = array(
+        'title'            => 'Messages',
+//        'title callback'   => 'privatemsg_title_callback',
+        'page callback'    => 'messenger_list_page',
+        'page arguments'   => array(1),
+//        'file'             => 'privatemsg.pages.inc',
+        'access callback'  => true,
+        'type'             => MENU_CALLBACK,
+//        'menu_name'        => 'user-menu',
+    );
+
+    return $items;
+}
+
+function messenger_theme() {
+    return array(
+        'messenger' => array(
+            'variables' => array('messenger' => array()),
+            'template' => 'messenger',
+        ),
+    );
+}
+
+
+function messenger_list_page($argument = 0, $uid = NULL) {
+    global $user;
+    $index=arg(1);
+//    // Setting default behavior...
+//    $account = $user;
+//    // Because uid is submitted by the menu system, it's a string not a integer.
+//    if ((int)$uid > 0 && $uid != $user->uid) {
+//        // Trying to view someone else's messages...
+//        if (!$account_check = user_load($uid)) {
+//            return MENU_NOT_FOUND;
+//        }
+//        if (!privatemsg_user_access('read all private messages')) {
+//            return MENU_ACCESS_DENIED;
+//        }
+//        // Has rights and user_load return an array so user does exist
+//        $account = $account_check;
+//    }
+    $messenger=array();
+    $query = _privatemsg_assemble_query('list', $user, 'list');
+    $i = 0;
+    foreach ($query->execute() as $row) {
+
+        $messenger['#options'][$row->thread_id] = (array)$row;
+        $messenger['#options'][$row->thread_id]['#weight'] = $i++;
+        if($row->thread_id==arg(1)||(($i==1)&&(!isset($index)))){
+            $messenger['#options'][$row->thread_id]['messages_body']=privatemsg_thread_load($row->thread_id);
+            $messenger['#options'][$row->thread_id]['messages_body']['aaa']=arg(1);
+        }
+    }
+
+    return theme('messenger', array('messenger' => $messenger));
+}
+
+//function theme_messenger($variables) {
+//
+//    return $variables['collected'];
+//}
+//
+//
+//
+//
+//
+//function messenger_center($form, &$form_state, $argument, $account) {
+//    // If this is an AJAX request, update $_GET['q'] so that table sorting and
+//    // similar links are using the correct base path.
+//    if ($_GET['q'] == 'system/ajax') {
+//        $q = 'messages';
+//        if (!empty($argument)) {
+//            $q .= '/' . $argument;
+//        }
+//        $_GET['q'] = $q;
+//    }
+//
+//    // Load the themed list headers based on the available data.
+//    $headers = privatemsg_get_headers(TRUE);
+//
+//    $form = array(
+//        '#list_argument' => $argument,
+//        '#submit' => array('privatemsg_list_submit'),
+//        'updated' => array(
+//            '#prefix' => '<div id="privatemsg-list-form">',
+//            '#suffix' => '</div>',
+//        ),
+//        '#attached' => array(
+//            'css' => array(
+//                drupal_get_path('module', 'privatemsg') . '/styles/privatemsg-list.css',
+//            ),
+//        ),
+//    );
+//    $form['updated']['list'] = array(
+//        '#type' => 'itemlist',
+//        '#header' => $headers,
+//        '#options' => array(),
+////        '#attributes' => array('class' => array('privatemsg-list')),
+//        '#empty' => t('No messages available.'),
+//        '#weight' => 5,
+////        '#pre_render' => array('_privatemsg_list_thread'),//預先處理from裡面的值
+//    );
+//
+//    $query = _privatemsg_assemble_query('list', $account, $argument);
+//    $i = 0;
+//    foreach ($query->execute() as $row) {
+//
+//        // Store the raw row data.
+//        $form['updated']['list']['#options'][$row->thread_id] = (array)$row;
+//        // Tableselect sorts the options, set a weight so that the order doesn't get
+//        // changed.
+//        $form['updated']['list']['#options'][$row->thread_id]['#weight'] = $i++;
+//    }
+//
+//    if (!empty($form['updated']['list']['#options'])) {
+//        // Load the last reply that is not from the current user.
+//        $result = db_query('SELECT pmi.thread_id, MAX(pm.mid) AS last_message FROM {pm_message} pm INNER JOIN {pm_index} pmi ON pm.mid = pmi.mid WHERE pmi.thread_id IN (:thread_ids) AND pm.author <> :current_uid GROUP BY pmi.thread_id', array(':current_uid' => $account->uid, ':thread_ids' => array_keys($form['updated']['list']['#options'])));
+//        foreach ($result as $row) {
+//            // Set replied flag if there is no newer message from another user than
+//            // the last replied.
+//            if ($row->last_message <= $form['updated']['list']['#options'][$row->thread_id]['last_reply_to_mid']) {
+//                $form['updated']['list']['#options'][$row->thread_id]['is_replied'] = TRUE;
+//            }
+//        }
+//
+//    }
+//
+//    // Save the currently active account, used for actions.
+//    $form['account'] = array('#type' => 'value', '#value' => $account);
+//
+//    // Define checkboxes, pager and theme
+//    $form['updated']['pager'] = array('#markup' => theme('pager'), '#weight' => 20);
+////    dd($form['updated']);
+//    return $form;
+//}

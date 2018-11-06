@@ -1,0 +1,7 @@
+name = Messenger
+description = "訊息中心"
+package = Hamiplay
+version = "7.x-1.0"
+core = 7.x
+configure = admin/config/hamiplay/messenger
+datestamp = "1528783064"

@@ -69,3 +69,28 @@ function find_key_in_ArrayOrObject($input,$key){
 }
 
 
+
+
+/**
+ * 分析網址帶的path 組成array
+ * 方便使用l()
+ * @param $path
+ * @return array
+ */
+function path_data_analyze($path = array()){
+
+    $path_set=array(
+        'query'=>array()
+    );
+    if(!empty($path)){
+        $str_var= explode("&",$path);
+        foreach($str_var as $v){
+            $str_var1= explode("=",$v);
+            $path_set['query'][$str_var1[0]]=$str_var1[1];
+        }
+    }else{
+        $path_set['query']['destination']='main';
+    }
+    return $path_set;
+
+}
